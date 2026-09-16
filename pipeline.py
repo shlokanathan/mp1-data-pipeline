@@ -1,5 +1,4 @@
-"""
-Data Processing Pipeline - CLI Template
+"""Data Processing Pipeline
 
 DS 3500 - MP1
 
@@ -25,6 +24,7 @@ def setup_logging(verbose=False):
         format="%(asctime)s %(levelname)-8s %(message)s",
         datefmt="%H:%M:%S"
     )
+
 
 def parse_arguments():
     """Parse command-line arguments."""
@@ -66,6 +66,7 @@ def validate_input(filepath):
         return False
     logger.info(f"Input file validated: {filepath}")
     return True
+
 
 def main():
     """Main pipeline function."""
