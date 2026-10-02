@@ -1,0 +1,19 @@
+dataset: sample sales extract
+generated: 2026-01-09
+record_count: 3
+records:
+  - date: 2026-01-05
+    region: North
+    product: Widget
+    units: 12
+    revenue: 1200.0
+  - date: 2026-01-06
+    region: South
+    product: Gadget
+    units: 8
+    revenue: 845.5
+  - date: 2026-01-07
+    region: East
+    product: Widget
+    units: 15
+    revenue: 1500.0
