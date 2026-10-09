@@ -1,10 +1,10 @@
 validation:
   required_columns:
-    - id
+    - record_id
     - name
-    - category
     - rating
-    - price
+    - category
+    - status
   numeric_columns:
     - rating
 
