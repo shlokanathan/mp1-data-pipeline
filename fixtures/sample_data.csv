@@ -97,5 +97,5 @@ id,name,category,rating,price
 96,delta-096,toys,3.6,
 11,alpha-011,electronics,3.8,290.45
 43,bravo-043,garden,4.5,392.54
-97,delta-097,garden,N/A,310.28
+97,delta-097,garden,pending,310.28
 98,juliet-098,home,unrated,374.55
