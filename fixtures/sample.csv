@@ -1,6 +1,6 @@
-date,region,product,units,revenue
-2026-01-05,North,Widget,12,1200.00
-2026-01-06,South,Gadget,8,845.50
-2026-01-07,East,Widget,15,1500.00
-2026-01-08,West,Doohickey,5,375.25
-2026-01-09,North,Gadget,20,2110.00
+Name,Score
+Alice,8
+Bob,10
+Charlie,12
+Dave,14
+Eve,16
