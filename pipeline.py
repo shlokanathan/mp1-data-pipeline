@@ -3,17 +3,23 @@
 DS 3500 - MP1
 
 Usage:
-    python pipeline.py --input data.csv --output clean.csv --config config.yaml
-    python pipeline.py --input data.csv --output clean.csv --config config.yaml --verbose
+    python pipeline.py --input fixtures/sample_data.csv --output output/clean.csv --config config/config.yaml
+    python pipeline.py --input fixtures/sample_data.csv --output output/clean.csv --config config/config.yaml --verbose
 """
 
 import argparse
 import logging
 import sys
-from pathlib import Path
 
-from data_loaders import load_data
-from data_processor import process_data, create_cleaning_report
+from src import (
+    create_cleaning_report,
+    load_data,
+    process_data,
+    save_data,
+    setup_logging,
+    validate_dataframe,
+    validate_input,
+)
 
 
 logger = logging.getLogger(__name__)
@@ -72,6 +78,21 @@ def main():
     except ValueError:
         sys.exit(1)
 
+    validation = config.get("validation", {})
+    required_columns = validation.get("required_columns", [])
+    numeric_columns = validation.get("numeric_columns", [])
+
+    rows_before_validation = len(data)
+
+    try:
+        data = validate_dataframe(data, required_columns, numeric_columns)
+    except ValueError:
+        sys.exit(1)
+
+    logger.info(
+        f"Validation complete: {rows_before_validation} → {len(data)} rows"
+    )
+
     original = data.copy()
 
     try:
@@ -80,13 +101,15 @@ def main():
         sys.exit(1)
 
     report = create_cleaning_report(original, data)
-    print(report)
     logger.info(
         f"Processing complete: {report['rows_before']} → {report['rows_after']} rows"
     )
 
-    data.to_csv(args.output, index=False)
+    save_data(data, args.output)
     logger.info(f"Saved cleaned data to {args.output}")
+
+    print("\nCleaning report:")
+    print(report)
 
 
 if __name__ == "__main__":
